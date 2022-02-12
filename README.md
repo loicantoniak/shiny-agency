@@ -2,6 +2,8 @@
 
 Projet réalisé dans le cadre de la formation "Créez une application React complète" d'OpenClassrooms.
 
+![screenshot](/src/images/screenshot.png)
+
 ## Objectif
 
 L'objectif de ce projet est : **Créez une application React complète**

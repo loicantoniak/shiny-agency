@@ -1,4 +1,4 @@
-import Navigation from "./pages/navigation/Navigation";
+import Navigation from "./pages/Navigation";
 
 function App() {
   return <Navigation />;
