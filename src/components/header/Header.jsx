@@ -1,8 +1,10 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import DarkLogo from "../../assets/dark-logo.png";
 import { StyledLink } from "../../utils/style/Atoms";
+import LightLogo from "../../assets/light-logo.png";
+import DarkLogo from "../../assets/dark-logo.png";
+import useTheme from "../../utils/hooks/useTheme";
+
 
 const HomeLogo = styled.img`
   height: 70px;
@@ -15,15 +17,21 @@ const NavContainer = styled.nav`
   align-items: center;
 `;
 
-export default function Header() {
+function Header() {
+  const { theme } = useTheme()
+
   return (
     <NavContainer>
       <Link to="/">
-        <HomeLogo src={DarkLogo} />
+        <HomeLogo src={theme === "light" ? DarkLogo : LightLogo} />
       </Link>
       <div>
-        <StyledLink to="/">Accueil</StyledLink>
-        <StyledLink to="/freelances">Profils</StyledLink>
+        <StyledLink $theme={theme} to="/">
+          Accueil
+        </StyledLink>
+        <StyledLink $theme={theme} to="/freelances">
+          Profils
+        </StyledLink>
         <StyledLink to="/questionnaire/1" $isFullLink>
           Faire le test
         </StyledLink>
@@ -31,3 +39,5 @@ export default function Header() {
     </NavContainer>
   );
 }
+
+export default Header;
