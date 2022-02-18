@@ -43,15 +43,12 @@ const CardWrapper = styled.div`
 
 export default function Card({ label, title, picture }) {
   const { theme } = useTheme();
-  const [isFavorite, setIsFavorite] = useState(false);
-  const star = isFavorite ? "⭐️" : "";
+
   return (
-    <CardWrapper theme={theme} onClick={() => setIsFavorite(!isFavorite)}>
+    <CardWrapper theme={theme}>
       <CardLabel theme={theme}>{label}</CardLabel>
       <CardImage src={picture} alt="freelance" />
-      <CardTitle theme={theme}>
-        {star} {title} {star}
-      </CardTitle>
+      <CardTitle theme={theme}>{title}</CardTitle>
     </CardWrapper>
   );
 }
