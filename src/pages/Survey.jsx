@@ -65,7 +65,7 @@ export default function Survey() {
   const { questionId } = useParams();
   const questionIdInt = parseInt(questionId);
   const { answers, saveAnswers } = useContext(SurveyContext);
-  const { data, isLoading, error } = useFetch(`http://localhost:8001/survey`);
+  const { data, isLoading, error } = useFetch(`http://localhost:8000/survey`);
   const surveyData = data?.surveyData
   const { theme } = useTheme()
 

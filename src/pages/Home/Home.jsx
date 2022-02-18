@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import colors from "../utils/style/colors";
-import HomeIllustration from "../assets/home-illustration.svg";
-import { StyledLink } from "../utils/style/Atoms";
-import useTheme from "../utils/hooks/useTheme";
+import colors from "../../utils/style/colors";
+import HomeIllustration from "../../assets/home-illustration.svg";
+import { StyledLink } from "../../utils/style/Atoms";
+import useTheme from "../../utils/hooks/useTheme";
 
 const HomeWrapper = styled.div`
   display: flex;

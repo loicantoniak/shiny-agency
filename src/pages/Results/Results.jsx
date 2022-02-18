@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { SurveyContext } from "../utils/context";
-import { useFetch } from "../utils/hooks/useFetch";
-import useTheme from "../utils/hooks/useTheme";
-import { Loader, StyledLink } from "../utils/style/Atoms";
-import colors from "../utils/style/colors";
+import { SurveyContext } from "../../utils/context";
+import { useFetch } from "../../utils/hooks/useFetch";
+import useTheme from "../../utils/hooks/useTheme";
+import { Loader, StyledLink } from "../../utils/style/Atoms";
+import colors from "../../utils/style/colors";
 
 const ResultsContainer = styled.div`
   display: flex;
@@ -53,7 +53,7 @@ const LoaderWrapper = styled.div`
   justify-content: center;
 `;
 
-function formatFetchParams(answers) {
+export function formatQueryParams(answers) {
   const answerNumbers = Object.keys(answers);
 
   return answerNumbers.reduce((previousParams, answerNumber, index) => {
@@ -63,13 +63,22 @@ function formatFetchParams(answers) {
   }, "");
 }
 
+export function formatJobList(title, listLength, index) {
+  if (index === listLength - 1) {
+      return title
+  }
+  return `${title},`
+}
+
 export default function Results() {
   const { theme } = useTheme();
   const { answers } = useContext(SurveyContext);
-  const fetchParams = formatFetchParams(answers);
+  const fetchParams = formatQueryParams(answers);
+
+  console.log(answers);
 
   const { data, isLoading, error } = useFetch(
-    `http://localhost:8001/results?${fetchParams}`
+    `http://localhost:8000/results?${fetchParams}`
   );
 
   if (error) {
@@ -78,7 +87,6 @@ export default function Results() {
 
   const resultsData = data?.resultsData;
 
-  console.log(resultsData);
 
   return isLoading ? (
     <LoaderWrapper>
@@ -94,8 +102,7 @@ export default function Results() {
               key={`result-title-${index}-${result.title}`}
               theme={theme}
             >
-              {result.title}
-              {index === resultsData.length - 1 ? "" : ","}
+              {formatJobList(result.title, resultsData.length, index)}
             </JobTitle>
           ))}
       </ResultsTitle>
